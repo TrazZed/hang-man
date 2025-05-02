@@ -1,4 +1,3 @@
-import random
 from hangman.game import HangmanGame
 from hangman.loader import load_files, load_words
 
@@ -32,23 +31,13 @@ def run_game(file_path, max_attempts):
     - max_attempts: The maximum number of attempts allowed for the game.
     """
     words = load_words(file_path)
-    secret = random.choice(words)
-    game = HangmanGame(secret, max_attempts)
+    game = HangmanGame(words, max_attempts)
     while not game.is_over():
         print(game.masked())
         print(f"Wrong Answers: {', '.join(game.wrong)}")
         print(f"Attempts left: {game.attempts_left()}")
         letter = input("Guess a letter: ").strip().lower()
-        if len(letter) != 1:
-            print("Enter exactly one letter.")
-            continue
-        if letter in game.guesses:
-            print("You've already guessed that letter.")
-            continue
-        correct = game.guess(letter)
-        game.guesses.append(letter)
-        print("Correct!" if correct else "Wrong!")
-
+        game.process_guess(letter)
     if game.is_won():
         print(f"Congratulations! You won. The word was '{game.secret}'.")
     else:
