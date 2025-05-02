@@ -23,3 +23,7 @@ To start the game, run:
 
 ```bash
 python main.py
+```
+
+## References
+Word list - https://github.com/MichaelWehar/Public-Domain-Word-Lists
