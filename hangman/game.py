@@ -1,5 +1,5 @@
 class HangmanGame:
-    def __init__(self, secret, max_attempts=6):
+    def __init__(self, secret, max_attempts):
         self.secret = secret.lower() #Ensure the secret word is in lowercase
         self.max_attempts = max_attempts  
         self.guesses = []
